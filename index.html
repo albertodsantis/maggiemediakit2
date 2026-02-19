@@ -142,13 +142,18 @@
     <!-- --- BIO SECTION --- -->
     <section class="py-20 px-6 md:px-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center break-inside-avoid">
         <div class="relative">
-            <!-- FOTO DE PERFIL (Placeholder) -->
+            <!-- FOTO DE PERFIL -->
+            <!-- 
+               ALBERTO: Cambia el src por: "images/perfil.jpg" cuando tengas la foto en tu carpeta.
+               Ahora mismo uso una de muestra.
+            -->
             <div class="aspect-[3/4] bg-gray-200 rounded-xl overflow-hidden relative shadow-2xl group">
-                <!-- Aquí iría la etiqueta <img> real: <img src="foto.jpg" class="w-full h-full object-cover" /> -->
-                <div class="absolute inset-0 flex items-center justify-center text-gray-400 flex-col">
-                    <i data-lucide="camera" class="w-12 h-12 mb-2 opacity-50"></i>
-                    <span class="uppercase tracking-widest text-sm">Foto de Maggie</span>
-                </div>
+                <img 
+                    src="https://images.unsplash.com/photo-1485230405346-71acb9518d9c?q=80&w=2094&auto=format&fit=crop" 
+                    alt="Maggie Dayz" 
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                
                 <!-- Decorative Frame -->
                 <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-orange-200 rounded-xl -z-10 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
             </div>
@@ -337,23 +342,38 @@
     <!-- --- VISUAL PORTFOLIO GRID --- -->
     <section class="py-6 overflow-hidden break-inside-avoid">
         <div class="flex gap-4 min-w-full overflow-x-auto pb-4 px-4 no-scrollbar">
+            <!-- 
+               ALBERTO: Aquí van los posts de Instagram o fotos del portafolio.
+               Cambia los src por "images/post1.jpg", "images/post2.jpg", etc.
+            -->
+            
             <!-- Item 1 -->
             <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative group overflow-hidden cursor-pointer">
-                <span class="text-gray-400 font-medium tracking-wider">Content Preview 1</span>
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover" alt="Portfolio 1">
                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span class="text-white border border-white px-4 py-2 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-black transition">Ver Post</span>
                 </div>
             </div>
+            
             <!-- Item 2 -->
             <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative group overflow-hidden cursor-pointer">
-                <span class="text-gray-400 font-medium tracking-wider">Content Preview 2</span>
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover" alt="Portfolio 2">
                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span class="text-white border border-white px-4 py-2 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-black transition">Ver Post</span>
                 </div>
             </div>
+            
             <!-- Item 3 -->
             <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative group overflow-hidden cursor-pointer">
-                <span class="text-gray-400 font-medium tracking-wider">Content Preview 3</span>
+                <img src="https://images.unsplash.com/photo-1529139574466-a302c27e3844?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover" alt="Portfolio 3">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <span class="text-white border border-white px-4 py-2 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-black transition">Ver Post</span>
+                </div>
+            </div>
+
+            <!-- Item 4 (Nuevo) -->
+            <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative group overflow-hidden cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover" alt="Portfolio 4">
                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span class="text-white border border-white px-4 py-2 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-black transition">Ver Post</span>
                 </div>
