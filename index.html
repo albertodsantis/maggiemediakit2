@@ -56,22 +56,52 @@
             }
             .portfolio-track {
                 display: grid !important;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 6mm !important;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 3mm !important;
                 overflow: visible !important;
                 padding: 0 !important;
             }
             .portfolio-item {
                 min-width: 0 !important;
+                aspect-ratio: 3 / 4 !important;
                 break-inside: avoid;
                 page-break-inside: avoid;
+            }
+            .portfolio-item img {
+                object-fit: cover !important;
+            }
+            .about-section,
+            .stats-section,
+            .portfolio-section,
+            .services-section,
+            .brands-section {
+                padding-top: 8mm !important;
+                padding-bottom: 8mm !important;
+            }
+            .stats-section .mb-16,
+            .stats-section .mb-12,
+            .services-section .mb-16,
+            .brands-section .mb-8 {
+                margin-bottom: 4mm !important;
+            }
+            .stats-section .gap-12,
+            .services-section .gap-6,
+            .brands-section .gap-8,
+            .brands-section .md\:gap-16 {
+                gap: 3mm !important;
+            }
+            .services-section,
+            .brands-section,
+            .portfolio-section {
+                break-before: auto !important;
+                page-break-before: auto !important;
             }
             .no-print {
                 display: none !important;
             }
             section {
-                break-inside: avoid;
-                page-break-inside: avoid;
+                break-inside: auto;
+                page-break-inside: auto;
             }
         }
 
@@ -165,7 +195,7 @@
     </header>
 
     <!-- --- BIO SECTION --- -->
-    <section class="py-20 px-6 md:px-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center break-inside-avoid">
+    <section class="about-section py-20 px-6 md:px-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center break-inside-avoid">
         <div class="relative">
             <!-- FOTO DE PERFIL -->
             <!-- Usando la tercera foto del carrusel como foto principal -->
@@ -200,7 +230,7 @@
     </section>
 
     <!-- --- STATS DASHBOARD --- -->
-    <section class="py-20 bg-white border-y border-gray-100 break-inside-avoid">
+    <section class="stats-section py-20 bg-white border-y border-gray-100 break-inside-avoid">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex items-center justify-between mb-12">
                 <h3 class="text-3xl font-serif">Community Insights</h3>
@@ -374,7 +404,7 @@
     </section>
 
     <!-- --- VISUAL PORTFOLIO GRID --- -->
-    <section class="py-6 overflow-hidden break-inside-avoid">
+    <section class="portfolio-section py-6 overflow-hidden break-inside-avoid">
         <div class="portfolio-track flex gap-4 min-w-full overflow-x-auto pb-4 px-4 no-scrollbar">
             <!--
                ALBERTO: Usando las fotos de tu carpeta /images.
@@ -419,7 +449,7 @@
     </section>
 
     <!-- --- SERVICES / RATE CARD --- -->
-    <section class="py-20 max-w-5xl mx-auto px-6 break-before-page">
+    <section class="services-section py-20 max-w-5xl mx-auto px-6 break-before-page">
         <div class="text-center mb-16">
             <h3 class="text-4xl font-serif mb-4">Trabajemos juntos!</h3>
             <p class="text-gray-600 max-w-xl mx-auto">Cada marca tiene necesidades diferentes. Elige la opción que mejor se adapte a las tuyas (y si aún no la encuentras, lo conversamos :)</p>
@@ -477,7 +507,7 @@
     </section>
 
     <!-- --- BRANDS --- -->
-    <section class="py-16 border-t border-gray-200 text-center break-inside-avoid">
+    <section class="brands-section py-16 border-t border-gray-200 text-center break-inside-avoid">
         <p class="uppercase tracking-widest text-xs text-gray-500 mb-8">Marcas que confían en mí</p>
         <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 px-6">
             <span class="text-2xl font-serif font-bold text-gray-400 hover:text-gray-800 transition cursor-default hover:scale-105 duration-300">Polar</span>
