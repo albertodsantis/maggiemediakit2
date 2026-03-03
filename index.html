@@ -34,12 +34,37 @@
         /* Estilos específicos para impresión */
         @media print {
             @page {
-                margin: 0;
-                size: auto;
+                size: A4 portrait;
+                margin: 12mm;
             }
+            html,
             body {
+                background: #FDFBF7 !important;
+            }
+            * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+                animation: none !important;
+                transition: none !important;
+                box-shadow: none !important;
+            }
+            .print-hero {
+                height: auto !important;
+                min-height: 0 !important;
+                padding-top: 14mm !important;
+                padding-bottom: 10mm !important;
+            }
+            .portfolio-track {
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 6mm !important;
+                overflow: visible !important;
+                padding: 0 !important;
+            }
+            .portfolio-item {
+                min-width: 0 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
             }
             .no-print {
                 display: none !important;
@@ -95,7 +120,7 @@
     -->
 
     <!-- --- HERO SECTION --- -->
-    <header class="relative w-full h-[90vh] flex flex-col justify-center items-center overflow-hidden">
+    <header class="print-hero relative w-full h-[90vh] flex flex-col justify-center items-center overflow-hidden">
         <!-- Abstract Background Elements -->
         <div class="absolute top-0 left-0 w-full h-full z-0 opacity-10">
             <div class="absolute top-10 left-10 w-64 h-64 bg-orange-300 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
@@ -350,44 +375,44 @@
 
     <!-- --- VISUAL PORTFOLIO GRID --- -->
     <section class="py-6 overflow-hidden break-inside-avoid">
-        <div class="flex gap-4 min-w-full overflow-x-auto pb-4 px-4 no-scrollbar">
+        <div class="portfolio-track flex gap-4 min-w-full overflow-x-auto pb-4 px-4 no-scrollbar">
             <!--
                ALBERTO: Usando las fotos de tu carpeta /images.
                Asegúrate de que la extensión sea en mayúsculas (.JPG) tal como las subiste.
             -->
 
             <!-- Item 1 -->
-            <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div class="portfolio-item min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
                 <img src="images/IMG_3521.JPG" class="w-full h-full object-cover" alt="Portfolio 1" onerror="this.src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop'">
             </div>
 
             <!-- Item 2 -->
-            <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div class="portfolio-item min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
                 <img src="images/IMG_3522.JPG" class="w-full h-full object-cover" alt="Portfolio 2" onerror="this.src='https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop'">
             </div>
 
             <!-- Item 3 -->
-            <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div class="portfolio-item min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
                 <img src="images/IMG_3523.JPG" class="w-full h-full object-cover" alt="Portfolio 3" onerror="this.src='https://images.unsplash.com/photo-1529139574466-a302c27e3844?q=80&w=1000&auto=format&fit=crop'">
             </div>
 
             <!-- Item 4 -->
-            <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div class="portfolio-item min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
                 <img src="images/IMG_3524.JPG" class="w-full h-full object-cover" alt="Portfolio 4" onerror="this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1000&auto=format&fit=crop'">
             </div>
 
             <!-- Item 5 -->
-            <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div class="portfolio-item min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
                 <img src="images/IMG_3525.JPG" class="w-full h-full object-cover" alt="Portfolio 5" onerror="this.src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop'">
             </div>
 
             <!-- Item 6 -->
-            <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div class="portfolio-item min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
                 <img src="images/IMG_3526.JPG" class="w-full h-full object-cover" alt="Portfolio 6" onerror="this.src='https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop'">
             </div>
 
             <!-- Item 7 -->
-            <div class="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
+            <div class="portfolio-item min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative overflow-hidden">
                 <img src="images/IMG_3527.JPG" class="w-full h-full object-cover" alt="Portfolio 7" onerror="this.src='https://images.unsplash.com/photo-1529139574466-a302c27e3844?q=80&w=1000&auto=format&fit=crop'">
             </div>
         </div>
