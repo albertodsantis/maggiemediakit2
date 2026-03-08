@@ -84,22 +84,82 @@
             )
             .join("");
 
-    const renderAudience = (audience) =>
-        (audience.segments || [])
-            .map((segment) => {
-                const toneClass = segment.tone === "accent" ? "audience-pill-accent" : "audience-pill-neutral";
-                const minHeight = Math.max(segment.percentage * 1.6, 48);
+    const renderAudience = (audience) => {
+        const segments = audience.segments || [];
+        const radius = 42;
+        const circumference = 2 * Math.PI * radius;
 
-                return `
-                    <div class="audience-bar">
-                        <div class="audience-percent">${escapeHtml(segment.percentage)}%</div>
-                        <div class="audience-pill ${toneClass}" style="min-height: ${minHeight}px;">
-                            ${escapeHtml(segment.label)}
-                        </div>
-                    </div>
+        let cumulative = 0;
+        const arcs = segments
+            .map((segment) => {
+                const percentage = Number(segment.percentage) || 0;
+                const dash = (percentage / 100) * circumference;
+                const stroke =
+                    segment.tone === "accent"
+                        ? "var(--accent)"
+                        : segment.tone === "berry"
+                          ? "#8f52aa"
+                          : segment.tone === "sky"
+                            ? "#2563eb"
+                            : segment.tone === "mint"
+                              ? "#14815c"
+                              : "#cfc7be";
+                const arc = `
+                    <circle
+                        class="audience-donut-segment"
+                        cx="60"
+                        cy="60"
+                        r="${radius}"
+                        fill="none"
+                        stroke="${stroke}"
+                        stroke-width="16"
+                        stroke-linecap="round"
+                        stroke-dasharray="${dash} ${circumference - dash}"
+                        stroke-dashoffset="${-cumulative}"
+                    ></circle>
                 `;
+                cumulative += dash;
+                return arc;
             })
             .join("");
+
+        const legend = segments
+            .map(
+                (segment) => `
+                    <div class="audience-legend-item">
+                        <span class="audience-legend-swatch tone-${escapeHtml(segment.tone)}"></span>
+                        <span class="audience-legend-label">${escapeHtml(segment.label)}</span>
+                        <span class="audience-legend-value">${escapeHtml(segment.percentage)}%</span>
+                    </div>
+                `
+            )
+            .join("");
+
+        return `
+            <div class="audience-donut-wrap">
+                <div class="audience-donut-chart" aria-label="${escapeHtml(audience.heading)}">
+                    <svg class="audience-donut-svg" viewBox="0 0 120 120" role="img" aria-hidden="true">
+                        <circle
+                            class="audience-donut-track"
+                            cx="60"
+                            cy="60"
+                            r="${radius}"
+                            fill="none"
+                            stroke="#ece4da"
+                            stroke-width="16"
+                        ></circle>
+                        <g transform="rotate(-90 60 60)">
+                            ${arcs}
+                        </g>
+                    </svg>
+                    <div class="audience-donut-center" aria-hidden="true"></div>
+                </div>
+                <div class="audience-legend">
+                    ${legend}
+                </div>
+            </div>
+        `;
+    };
 
     const renderRanges = (items) =>
         (items || [])
