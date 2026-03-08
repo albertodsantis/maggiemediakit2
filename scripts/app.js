@@ -189,6 +189,10 @@
                         <span class="hero-title-accent">${escapeHtml(data.hero.lastName)}</span>
                     </h1>
                     <p class="hero-tagline">${escapeHtml(data.hero.tagline)}</p>
+                    <div class="hero-print-meta print-only">
+                        <a class="hero-print-link" href="${escapeHtml(data.hero.platformUrl)}">${escapeHtml(data.hero.platformLabel)}</a>
+                        <a class="hero-print-link" href="mailto:${escapeHtml(data.footer.email)}">${escapeHtml(data.footer.email)}</a>
+                    </div>
                     <div class="hero-actions hidden-print">
                         <a class="button button-primary" href="${escapeHtml(data.hero.platformUrl)}" target="_blank" rel="noreferrer">
                             <i data-lucide="instagram"></i>
@@ -265,8 +269,10 @@
             </section>
 
             <section class="section-tight">
-                <div class="portfolio-track">
-                    ${renderPortfolio(data.portfolio)}
+                <div class="portfolio-container">
+                    <div class="portfolio-track">
+                        ${renderPortfolio(data.portfolio)}
+                    </div>
                 </div>
             </section>
 

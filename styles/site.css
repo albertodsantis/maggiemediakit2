@@ -167,7 +167,8 @@ button {
 }
 
 .hero-tagline {
-    margin: 20px auto 0;
+    /* add extra space underneath the tagline for visual breathing room */
+    margin: 20px auto 32px;
     max-width: 720px;
     font-size: clamp(1.1rem, 2.5vw, 1.6rem);
     line-height: 1.45;
@@ -508,13 +509,17 @@ button {
     background: color-mix(in srgb, var(--accent) 75%, white);
 }
 
+
+.portfolio-container {
+    padding: 0 16px;
+}
+
 .portfolio-track {
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(260px, 1fr);
     gap: 16px;
     overflow-x: auto;
-    padding: 0 16px 16px;
     scrollbar-width: none;
 }
 
@@ -607,16 +612,21 @@ button {
 }
 
 .footer {
+    width: 100%;
     background: #161616;
     color: #ffffff;
     text-align: center;
     padding: 88px 16px;
 }
 
+.footer .section-title {
+    color: var(--accent);
+}
+
 .footer-copy {
     margin: 18px auto 0;
     max-width: 540px;
-    color: rgba(255, 255, 255, 0.68);
+    color: var(--accent);
 }
 
 .footer-email {
@@ -635,8 +645,23 @@ button {
     color: rgba(255, 255, 255, 0.4);
 }
 
-.hidden-print {
-    display: initial;
+.print-only {
+    display: none;
+}
+
+.hero-print-meta {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.hero-print-link {
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    border: 1px solid color-mix(in srgb, var(--accent) 22%, white);
+    background: var(--surface);
+    font-weight: 700;
 }
 
 @keyframes blob {
@@ -724,6 +749,10 @@ button {
     .brand-list {
         gap: 14px 24px;
     }
+
+    .hero-print-meta {
+        flex-direction: column;
+    }
 }
 
 @media print {
@@ -762,8 +791,19 @@ button {
 
     .section,
     .section-tight {
-        padding-top: 8mm !important;
-        padding-bottom: 8mm !important;
+        padding-top: 6mm !important;
+        padding-bottom: 6mm !important;
+    }
+
+    .about-grid {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+        align-items: center !important;
+        gap: 6mm !important;
+    }
+
+    .stats-header {
+        align-items: flex-end !important;
+        flex-direction: row !important;
     }
 
     .portfolio-track {
@@ -771,6 +811,10 @@ button {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 2.5mm !important;
         overflow: visible !important;
+        padding: 0 !important;
+    }
+
+    .portfolio-container {
         padding: 0 !important;
     }
 
@@ -785,19 +829,56 @@ button {
         display: none !important;
     }
 
+    .print-only {
+        display: block !important;
+    }
+
     .metric-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 3mm !important;
+        margin-bottom: 5mm !important;
     }
 
     .panel-grid,
     .service-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4mm !important;
     }
 
+    .about-grid,
+    .metric-card,
+    .metric-grid,
     .panel-card,
+    .panel-grid,
+    .portfolio-item,
     .service-card,
-    .metric-card {
+    .service-grid,
+    .brand-list {
         break-inside: avoid;
         page-break-inside: avoid;
+    }
+
+    .hero-backdrop,
+    .portrait-card::after {
+        display: none !important;
+    }
+
+    .brand-list {
+        gap: 3mm 8mm !important;
+        margin-top: 4mm !important;
+    }
+
+    .brand-chip {
+        font-size: 1.2rem !important;
+    }
+
+    .hero-print-meta {
+        display: flex !important;
+        margin-top: 4mm !important;
+        gap: 3mm !important;
+    }
+
+    .hero-print-link {
+        padding: 3mm 4mm !important;
     }
 }
