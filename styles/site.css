@@ -1110,25 +1110,20 @@ button {
         page-break-inside: avoid;
     }
 
-    .print-page-cover,
-    .print-page-stats {
-        min-height: auto;
-        break-inside: auto;
-        page-break-inside: auto;
-    }
-
     .print-page-cover {
-        break-after: auto;
-        page-break-after: auto;
-    }
-
-    .print-page-stats,
-    .print-page-offers {
+        min-height: calc(297mm - 24mm);
+        justify-content: flex-start;
         break-after: page;
         page-break-after: always;
     }
 
-    .print-page-offers,
+    .print-page-stats,
+    .print-page-offers {
+        min-height: calc(297mm - 24mm);
+        break-after: page;
+        page-break-after: always;
+    }
+
     .print-page-brands {
         min-height: calc(297mm - 24mm);
     }
@@ -1153,6 +1148,77 @@ button {
     .hero-backdrop,
     .portrait-card::after {
         display: none !important;
+    }
+
+    .print-page-cover .hero {
+        padding-top: 3mm !important;
+        padding-bottom: 3mm !important;
+    }
+
+    .print-page-cover .hero-title {
+        font-size: 2.35rem !important;
+    }
+
+    .print-page-cover .hero-tagline {
+        max-width: 100% !important;
+        margin: 2.5mm auto 3mm !important;
+        font-size: 0.92rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .print-page-cover .hero-print-meta {
+        margin-top: 2.5mm !important;
+        margin-bottom: 9mm !important;
+        gap: 2mm !important;
+    }
+
+    .print-page-cover .hero-print-link {
+        padding: 2.2mm 3.2mm !important;
+        font-size: 0.74rem !important;
+    }
+
+    .print-page-cover .section {
+        padding-top: 3.4mm !important;
+        padding-bottom: 0 !important;
+        margin-top: 2mm !important;
+    }
+
+    .print-page-cover .about-grid {
+        display: block !important;
+    }
+
+    .print-page-cover .portrait-wrap {
+        float: left;
+        width: 39% !important;
+        margin: 0 5mm 2mm 0;
+    }
+
+    .print-page-cover .portrait-card {
+        aspect-ratio: 3 / 4 !important;
+    }
+
+    .print-page-cover .about-copy .section-title {
+        margin-bottom: 3mm !important;
+        max-width: none !important;
+        font-size: 3.3rem !important;
+        line-height: 0.92 !important;
+    }
+
+    .print-page-cover .about-copy p {
+        margin-bottom: 2.2mm !important;
+        font-size: 1.19rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .print-page-cover .chips {
+        margin-top: 3mm !important;
+        gap: 1.8mm !important;
+    }
+
+    .print-page-cover .chip {
+        padding: 1.6mm 2.4mm !important;
+        font-size: 0.75rem !important;
+        letter-spacing: 0.08em !important;
     }
 
     .metric-card {
