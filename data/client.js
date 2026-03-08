@@ -1,9 +1,9 @@
 ﻿window.MEDIA_KIT_DATA = {
     seo: {
-        title: "Media Kit - Maggie Díaz",
-        description: "Media kit de Maggie Díaz, creadora de contenido enfocada en humor observacional, sátira cultural y lifestyle caraqueño.",
+        title: "Maggie Diaz Media Kit",
+        description: "",
         locale: "es_ES",
-        siteName: "Media Kit - Maggie Díaz",
+        siteName: "Maggie Diaz Media Kit",
         canonicalUrl: "",
         previewImage: "images/IMG_3523.JPG"
     },
