@@ -209,9 +209,6 @@
                             </button>
                         </div>
                     </div>
-                    <div class="scroll-cue hidden-print" aria-hidden="true">
-                        <i data-lucide="arrow-down"></i>
-                    </div>
                 </header>
 
                 <section class="section section-about">

@@ -215,15 +215,6 @@ button {
     border-color: color-mix(in srgb, var(--accent) 30%, white);
 }
 
-.scroll-cue {
-    position: absolute;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(0, 0, 0, 0.35);
-    animation: bob 1.5s ease-in-out infinite;
-}
-
 .about-grid {
     display: grid;
     grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
@@ -343,7 +334,6 @@ button {
 .metric-icon svg,
 .service-icon svg,
 .button svg,
-.scroll-cue svg,
 .country-row svg {
     width: 18px;
     height: 18px;
@@ -706,16 +696,6 @@ button {
     }
 }
 
-@keyframes bob {
-    0%,
-    100% {
-        transform: translate(-50%, 0);
-    }
-    50% {
-        transform: translate(-50%, -8px);
-    }
-}
-
 @media (max-width: 920px) {
     .section {
         padding: 72px 0;
@@ -844,8 +824,7 @@ button {
         break-inside: avoid;
     }
 
-    .hidden-print,
-    .scroll-cue {
+    .hidden-print {
         display: none !important;
     }
 
