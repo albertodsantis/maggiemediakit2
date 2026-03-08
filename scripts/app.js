@@ -176,126 +176,134 @@
 
     root.innerHTML = `
         <div class="site-shell">
-            <header class="hero">
-                <div class="hero-backdrop" aria-hidden="true">
-                    <div class="blob blob-one"></div>
-                    <div class="blob blob-two"></div>
-                    <div class="blob blob-three"></div>
-                </div>
-                <div class="hero-inner">
-                    <p class="eyebrow">${escapeHtml(data.hero.monthLabel)}</p>
-                    <h1 class="hero-title">
-                        ${escapeHtml(data.hero.firstName)}
-                        <span class="hero-title-accent">${escapeHtml(data.hero.lastName)}</span>
-                    </h1>
-                    <p class="hero-tagline">${escapeHtml(data.hero.tagline)}</p>
-                    <div class="hero-print-meta print-only">
-                        <a class="hero-print-link" href="${escapeHtml(data.hero.platformUrl)}">${escapeHtml(data.hero.platformLabel)}</a>
-                        <a class="hero-print-link" href="mailto:${escapeHtml(data.footer.email)}">${escapeHtml(data.footer.email)}</a>
+            <div class="print-page print-page-cover">
+                <header class="hero">
+                    <div class="hero-backdrop" aria-hidden="true">
+                        <div class="blob blob-one"></div>
+                        <div class="blob blob-two"></div>
+                        <div class="blob blob-three"></div>
                     </div>
-                    <div class="hero-actions hidden-print">
-                        <a class="button button-primary" href="${escapeHtml(data.hero.platformUrl)}" target="_blank" rel="noreferrer">
-                            <i data-lucide="instagram"></i>
-                            ${escapeHtml(data.hero.platformLabel)}
-                        </a>
-                        <a class="button button-secondary" href="mailto:${escapeHtml(data.hero.contactEmail)}">
-                            <i data-lucide="mail"></i>
-                            ${escapeHtml(data.hero.contactLabel)}
-                        </a>
-                        <button class="button button-accent" type="button" data-print-trigger>
-                            <i data-lucide="download"></i>
-                            ${escapeHtml(data.hero.downloadLabel)}
-                        </button>
-                    </div>
-                </div>
-                <div class="scroll-cue hidden-print" aria-hidden="true">
-                    <i data-lucide="arrow-down"></i>
-                </div>
-            </header>
-
-            <section class="section">
-                <div class="container about-grid">
-                    <div class="portrait-wrap">
-                        <div class="portrait-card">
-                            <img
-                                src="${escapeHtml(data.about.image)}"
-                                alt="${escapeHtml(data.about.imageAlt)}"
-                                onerror="this.onerror=null;this.src='${escapeHtml(data.about.fallbackImage || "")}'"
-                            >
+                    <div class="hero-inner">
+                        <p class="eyebrow">${escapeHtml(data.hero.monthLabel)}</p>
+                        <h1 class="hero-title">
+                            ${escapeHtml(data.hero.firstName)}
+                            <span class="hero-title-accent">${escapeHtml(data.hero.lastName)}</span>
+                        </h1>
+                        <p class="hero-tagline">${escapeHtml(data.hero.tagline)}</p>
+                        <div class="hero-print-meta print-only">
+                            <a class="hero-print-link" href="${escapeHtml(data.hero.platformUrl)}">${escapeHtml(data.hero.platformLabel)}</a>
+                            <a class="hero-print-link" href="mailto:${escapeHtml(data.footer.email)}">${escapeHtml(data.footer.email)}</a>
+                        </div>
+                        <div class="hero-actions hidden-print">
+                            <a class="button button-primary" href="${escapeHtml(data.hero.platformUrl)}" target="_blank" rel="noreferrer">
+                                <i data-lucide="instagram"></i>
+                                ${escapeHtml(data.hero.platformLabel)}
+                            </a>
+                            <a class="button button-secondary" href="mailto:${escapeHtml(data.hero.contactEmail)}">
+                                <i data-lucide="mail"></i>
+                                ${escapeHtml(data.hero.contactLabel)}
+                            </a>
+                            <button class="button button-accent" type="button" data-print-trigger>
+                                <i data-lucide="download"></i>
+                                ${escapeHtml(data.hero.downloadLabel)}
+                            </button>
                         </div>
                     </div>
-                    <div class="about-copy">
-                        <h2 class="section-title">${escapeHtml(data.about.heading)}</h2>
-                        ${(data.about.paragraphs || [])
-                            .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
-                            .join("")}
-                        <div class="chips">
-                            ${(data.about.tags || []).map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join("")}
+                    <div class="scroll-cue hidden-print" aria-hidden="true">
+                        <i data-lucide="arrow-down"></i>
+                    </div>
+                </header>
+
+                <section class="section section-about">
+                    <div class="container about-grid">
+                        <div class="portrait-wrap">
+                            <div class="portrait-card">
+                                <img
+                                    src="${escapeHtml(data.about.image)}"
+                                    alt="${escapeHtml(data.about.imageAlt)}"
+                                    onerror="this.onerror=null;this.src='${escapeHtml(data.about.fallbackImage || "")}'"
+                                >
+                            </div>
+                        </div>
+                        <div class="about-copy">
+                            <h2 class="section-title">${escapeHtml(data.about.heading)}</h2>
+                            ${(data.about.paragraphs || [])
+                                .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+                                .join("")}
+                            <div class="chips">
+                                ${(data.about.tags || []).map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join("")}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
-            <section class="section stats-section">
-                <div class="container">
-                    <div class="stats-header">
-                        <h2 class="section-title">${escapeHtml(data.stats.heading)}</h2>
-                        <div class="stats-updated">${escapeHtml(data.stats.updatedLabel)}</div>
+            <div class="print-page print-page-stats">
+                <section class="section stats-section">
+                    <div class="container">
+                        <div class="stats-header">
+                            <h2 class="section-title">${escapeHtml(data.stats.heading)}</h2>
+                            <div class="stats-updated">${escapeHtml(data.stats.updatedLabel)}</div>
+                        </div>
+                        <div class="metric-grid">
+                            ${renderMetrics(data.stats.keyMetrics)}
+                        </div>
+                        <div class="panel-grid">
+                            <article class="panel-card">
+                                <h3 class="panel-title">${escapeHtml(data.stats.audience.heading)}</h3>
+                                <div class="audience-bars">
+                                    ${renderAudience(data.stats.audience)}
+                                </div>
+                            </article>
+                            <article class="panel-card">
+                                <h3 class="panel-title">${escapeHtml(data.stats.ageRanges.heading)}</h3>
+                                <div class="range-list">
+                                    ${renderRanges(data.stats.ageRanges.items)}
+                                </div>
+                            </article>
+                            <article class="panel-card panel-card-wide">
+                                <h3 class="panel-title">${escapeHtml(data.stats.topCountries.heading)}</h3>
+                                <div class="country-list">
+                                    ${renderCountries(data.stats.topCountries.items)}
+                                </div>
+                            </article>
+                        </div>
                     </div>
-                    <div class="metric-grid">
-                        ${renderMetrics(data.stats.keyMetrics)}
-                    </div>
-                    <div class="panel-grid">
-                        <article class="panel-card">
-                            <h3 class="panel-title">${escapeHtml(data.stats.audience.heading)}</h3>
-                            <div class="audience-bars">
-                                ${renderAudience(data.stats.audience)}
-                            </div>
-                        </article>
-                        <article class="panel-card">
-                            <h3 class="panel-title">${escapeHtml(data.stats.ageRanges.heading)}</h3>
-                            <div class="range-list">
-                                ${renderRanges(data.stats.ageRanges.items)}
-                            </div>
-                        </article>
-                        <article class="panel-card">
-                            <h3 class="panel-title">${escapeHtml(data.stats.topCountries.heading)}</h3>
-                            <div class="country-list">
-                                ${renderCountries(data.stats.topCountries.items)}
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
-            <section class="section-tight">
-                <div class="portfolio-container">
-                    <div class="portfolio-track">
-                        ${renderPortfolio(data.portfolio)}
+            <div class="print-page print-page-offers">
+                <section class="section-tight section-portfolio">
+                    <div class="portfolio-container">
+                        <div class="portfolio-track">
+                            ${renderPortfolio(data.portfolio)}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="section">
-                <div class="container">
-                    <div class="services-header">
-                        <h2 class="section-title">${escapeHtml(data.services.heading)}</h2>
-                        <p class="section-copy">${escapeHtml(data.services.description)}</p>
+                <section class="section section-services">
+                    <div class="container">
+                        <div class="services-header">
+                            <h2 class="section-title">${escapeHtml(data.services.heading)}</h2>
+                            <p class="section-copy">${escapeHtml(data.services.description)}</p>
+                        </div>
+                        <div class="service-grid">
+                            ${renderServices(data.services.items)}
+                        </div>
                     </div>
-                    <div class="service-grid">
-                        ${renderServices(data.services.items)}
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
-            <section class="section brands-section">
-                <div class="container" style="text-align: center;">
-                    <p class="eyebrow">${escapeHtml(data.brands.eyebrow)}</p>
-                    <div class="brand-list">
-                        ${renderBrands(data.brands.items)}
+            <div class="print-page print-page-brands">
+                <section class="section brands-section">
+                    <div class="container brands-container">
+                        <p class="eyebrow">${escapeHtml(data.brands.eyebrow)}</p>
+                        <div class="brand-list">
+                            ${renderBrands(data.brands.items)}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
             <footer class="footer hidden-print">
                 <div class="container">

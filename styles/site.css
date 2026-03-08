@@ -376,21 +376,28 @@ button {
 }
 
 .metric-label {
-    margin-top: 6px;
+    max-width: 14ch;
+    margin: 6px auto 0;
     font-size: 0.78rem;
-    letter-spacing: 0.16em;
+    line-height: 1.35;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
+    overflow-wrap: anywhere;
 }
 
 .panel-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 22px;
 }
 
 .panel-card {
     padding: 28px;
+}
+
+.panel-card-wide {
+    grid-column: 1 / -1;
 }
 
 .panel-title {
@@ -447,6 +454,11 @@ button {
 .country-list {
     display: grid;
     gap: 16px;
+}
+
+.panel-card-wide .country-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 28px;
 }
 
 .range-row-head,
@@ -596,6 +608,10 @@ button {
     border-top: 1px solid var(--line);
 }
 
+.brands-container {
+    text-align: center;
+}
+
 .brand-list {
     display: flex;
     flex-wrap: wrap;
@@ -719,6 +735,10 @@ button {
 
     .portfolio-track {
         grid-auto-columns: minmax(220px, 75vw);
+    }
+
+    .panel-card-wide .country-list {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -845,6 +865,24 @@ button {
         gap: 4mm !important;
     }
 
+    .print-page {
+        min-height: calc(297mm - 24mm);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .print-page:not(.print-page-brands) {
+        break-after: page;
+        page-break-after: always;
+    }
+
+    .print-page-brands {
+        justify-content: center;
+    }
+
     .about-grid,
     .metric-card,
     .metric-grid,
@@ -863,6 +901,80 @@ button {
         display: none !important;
     }
 
+    .metric-card {
+        padding: 4mm 3mm !important;
+    }
+
+    .metric-label {
+        max-width: 12ch;
+        font-size: 0.67rem !important;
+        letter-spacing: 0.09em !important;
+    }
+
+    .panel-card-wide .country-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 3mm 6mm !important;
+    }
+
+    .panel-card-wide .country-progress {
+        width: 34mm !important;
+    }
+
+    .print-page-offers .section-tight {
+        padding-top: 4mm !important;
+        padding-bottom: 3mm !important;
+    }
+
+    .print-page-offers .section {
+        padding-top: 3mm !important;
+        padding-bottom: 3mm !important;
+    }
+
+    .print-page-offers .portfolio-track {
+        gap: 2mm !important;
+    }
+
+    .print-page-offers .portfolio-item {
+        aspect-ratio: 9 / 13 !important;
+    }
+
+    .print-page-offers .services-header {
+        margin-bottom: 4mm !important;
+    }
+
+    .print-page-offers .section-copy {
+        margin-top: 2mm !important;
+        font-size: 0.88rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .print-page-offers .service-card {
+        padding: 4mm !important;
+    }
+
+    .print-page-offers .service-top {
+        margin-bottom: 3mm !important;
+    }
+
+    .print-page-offers .service-icon {
+        width: 11mm !important;
+        height: 11mm !important;
+    }
+
+    .print-page-offers .service-price {
+        font-size: 1.3rem !important;
+    }
+
+    .print-page-offers .service-name {
+        margin-bottom: 1.5mm !important;
+        font-size: 1.02rem !important;
+    }
+
+    .print-page-offers .service-copy {
+        font-size: 0.8rem !important;
+        line-height: 1.45 !important;
+    }
+
     .brand-list {
         gap: 3mm 8mm !important;
         margin-top: 4mm !important;
@@ -870,6 +982,38 @@ button {
 
     .brand-chip {
         font-size: 1.2rem !important;
+    }
+
+    .print-page-brands .brands-section {
+        border-top: 0 !important;
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
+
+    .print-page-brands .brands-container {
+        width: 100%;
+        display: grid;
+        align-content: center;
+        gap: 4mm;
+    }
+
+    .print-page-brands .eyebrow {
+        margin-bottom: 0 !important;
+    }
+
+    .print-page-brands .brand-list {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: center;
+        gap: 10mm 8mm !important;
+        margin-top: 8mm !important;
+        opacity: 0.78 !important;
+    }
+
+    .print-page-brands .brand-chip {
+        font-size: 1.8rem !important;
+        line-height: 1.1;
     }
 
     .hero-print-meta {
