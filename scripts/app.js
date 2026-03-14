@@ -161,42 +161,156 @@
         `;
     };
 
-    const renderRanges = (items) =>
-        (items || [])
+    const formatPercentage = (value) => {
+        const numericValue = Number(value) || 0;
+        return Number.isInteger(numericValue)
+            ? String(numericValue)
+            : numericValue.toFixed(1).replace(/\.0$/, "");
+    };
+
+    const renderRanges = (items) => {
+        const palette = [
+            "#1f1b18",
+            "var(--accent)",
+            "#d99057",
+            "#f0bf95"
+        ];
+
+        const normalizedItems = (items || [])
+            .map((item) => ({
+                label: item.label,
+                percentage: Math.max(0, Number(item.percentage) || 0)
+            }))
+            .sort((a, b) => b.percentage - a.percentage);
+
+        if (!normalizedItems.length) {
+            return "";
+        }
+
+        const coloredItems = normalizedItems.map((item, index) => ({
+            ...item,
+            color: palette[index % palette.length]
+        }));
+
+        const rows = coloredItems
+            .reduce(
+                (result, item) => {
+                    const targetRow = result[0].total <= result[1].total ? result[0] : result[1];
+                    targetRow.items.push(item);
+                    targetRow.total += item.percentage;
+                    return result;
+                },
+                [
+                    { items: [], total: 0 },
+                    { items: [], total: 0 }
+                ]
+            )
+            .filter((row) => row.items.length);
+
+        const renderTile = (item, extraClass = "") => `
+            <article
+                class="age-tile ${extraClass}"
+                style="--tile-color: ${item.color}; flex: ${item.percentage || 1} 1 0;"
+            >
+                <div class="age-tile-content">
+                    <div class="age-tile-label">${escapeHtml(item.label)}</div>
+                    <div class="age-tile-value">${escapeHtml(formatPercentage(item.percentage))}%</div>
+                </div>
+            </article>
+        `;
+
+        return `
+            <div class="age-treemap" role="img" aria-label="Distribucion de audiencia por rango de edad">
+                ${rows
+                    .map(
+                        (row, rowIndex) => `
+                            <div class="age-treemap-row" style="flex: ${row.total || 1} 1 0;">
+                                ${row.items
+                                    .map((item, itemIndex) =>
+                                        renderTile(
+                                            item,
+                                            rowIndex === 0 && itemIndex === 0 ? "age-tile-primary" : "age-tile-secondary"
+                                        )
+                                    )
+                                    .join("")}
+                            </div>
+                        `
+                    )
+                    .join("")}
+            </div>
+        `;
+    };
+
+    const renderCountries = (items) => {
+        const palette = [
+            "var(--accent)",
+            "#c96f3a",
+            "#d99057",
+            "#eab27f",
+            "#b95a1b",
+            "#d9d2c8"
+        ];
+
+        const normalizedItems = (items || []).map((item) => ({
+            label: item.label,
+            percentage: Math.max(0, Number(item.percentage) || 0)
+        }));
+
+        const total = normalizedItems.reduce((sum, item) => sum + item.percentage, 0);
+        const barScale = total > 100 ? 100 / total : 1;
+        const remainder = Math.max(0, 100 - Math.min(total, 100));
+
+        const segments = normalizedItems.map((item, index) => ({
+            ...item,
+            barPercentage: item.percentage * barScale,
+            color: palette[index % palette.length]
+        }));
+
+        if (remainder > 0) {
+            segments.push({
+                label: "Otros",
+                percentage: remainder,
+                barPercentage: remainder,
+                color: palette[palette.length - 1]
+            });
+        }
+
+        const bar = segments
             .map(
                 (item) => `
-                    <div>
-                        <div class="range-row-head">
-                            <span class="range-label">${escapeHtml(item.label)}</span>
-                            <span class="range-value">${escapeHtml(item.percentage)}%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" style="width: ${Number(item.percentage) || 0}%;"></div>
-                        </div>
+                    <span
+                        class="country-stack-segment"
+                        style="flex-basis: ${item.barPercentage}%; background: ${item.color};"
+                        aria-label="${escapeHtml(item.label)} ${escapeHtml(formatPercentage(item.percentage))}%"
+                        title="${escapeHtml(item.label)} ${escapeHtml(formatPercentage(item.percentage))}%"
+                    ></span>
+                `
+            )
+            .join("");
+
+        const legend = segments
+            .map(
+                (item) => `
+                    <div class="country-legend-item">
+                        <span class="country-legend-swatch" style="background: ${item.color};"></span>
+                        <span class="country-legend-label">${escapeHtml(item.label)}</span>
+                        <span class="country-value">${escapeHtml(formatPercentage(item.percentage))}%</span>
                     </div>
                 `
             )
             .join("");
 
-    const renderCountries = (items) =>
-        (items || [])
-            .map(
-                (item) => `
-                    <div class="country-row">
-                        <div class="country-meta">
-                            <i data-lucide="map-pin"></i>
-                            <span class="country-name">${escapeHtml(item.label)}</span>
-                        </div>
-                        <div class="country-meta">
-                            <div class="country-progress">
-                                <div class="country-progress-bar" style="width: ${Number(item.percentage) || 0}%;"></div>
-                            </div>
-                            <span class="country-value">${escapeHtml(item.percentage)}%</span>
-                        </div>
-                    </div>
-                `
-            )
-            .join("");
+        return `
+            <div class="country-breakdown">
+                <div class="country-stack-bar" role="img" aria-label="Distribucion de audiencia por pais">
+                    ${bar}
+                </div>
+                <div class="country-list">
+                    ${legend}
+                </div>
+            </div>
+        `;
+    };
 
     const renderPortfolio = (items) =>
         (items || [])
@@ -320,9 +434,7 @@
                             </article>
                             <article class="panel-card panel-card-wide">
                                 <h3 class="panel-title">${escapeHtml(data.stats.topCountries.heading)}</h3>
-                                <div class="country-list">
-                                    ${renderCountries(data.stats.topCountries.items)}
-                                </div>
+                                ${renderCountries(data.stats.topCountries.items)}
                             </article>
                         </div>
                     </div>

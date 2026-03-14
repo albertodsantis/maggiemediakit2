@@ -424,8 +424,7 @@ button {
 
 .metric-icon svg,
 .service-icon svg,
-.button svg,
-.country-row svg {
+.button svg {
     width: 18px;
     height: 18px;
 }
@@ -582,84 +581,143 @@ button {
     font-weight: 800;
 }
 
-.range-list,
+.range-list {
+    display: block;
+}
+
+.age-treemap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-height: 288px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.54);
+    border: 1px solid rgba(34, 34, 34, 0.05);
+}
+
+.age-treemap-row {
+    display: flex;
+    gap: 0;
+    min-height: 0;
+}
+
+.age-tile {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    border-radius: 0;
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, color-mix(in srgb, var(--tile-color) 18%, white), color-mix(in srgb, var(--tile-color) 10%, white)),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0));
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.age-tile-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+}
+
+.age-tile::after {
+    content: "";
+    position: absolute;
+    inset: auto -18% -32% auto;
+    width: 140px;
+    height: 140px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--tile-color) 14%, white);
+    opacity: 0.8;
+}
+
+.age-tile-primary .age-tile-content {
+    padding: 26px;
+}
+
+.age-tile-label {
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--tile-color) 64%, #201a16);
+}
+
+.age-tile-value {
+    margin-top: 12px;
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    color: #1d1714;
+}
+
+.age-tile-primary .age-tile-value {
+    font-size: clamp(3rem, 4vw, 4.2rem);
+}
+
+.age-tile-secondary .age-tile-value {
+    font-size: 1.6rem;
+}
+
 .country-list {
     display: grid;
-    gap: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 18px;
 }
 
-.panel-card-wide .country-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 28px;
-}
-
-.range-row-head,
-.country-row {
+.country-breakdown {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 14px;
+    gap: 18px;
 }
 
-.range-label,
-.country-name {
+.country-stack-bar {
+    display: flex;
+    width: 100%;
+    height: 18px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e8dfd5;
+    box-shadow: inset 0 0 0 1px rgba(34, 34, 34, 0.04);
+}
+
+.country-stack-segment {
+    display: block;
+    min-width: 0;
+    height: 100%;
+}
+
+.country-legend-label {
     font-size: 0.98rem;
     font-weight: 600;
 }
 
-.range-value,
 .country-value {
     font-size: 0.96rem;
     font-weight: 800;
     text-align: right;
 }
 
-.progress {
-    width: 100%;
-    height: 12px;
-    border-radius: 999px;
-    background: #e8dfd5;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-.progress-bar {
-    height: 100%;
-    border-radius: inherit;
-    background: var(--text);
-}
-
-.country-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
-}
-
-.country-row .country-meta:last-child {
+.country-legend-item {
     display: grid;
-    grid-template-columns: 86px 40px;
-    justify-content: end;
-    justify-items: end;
-    width: 150px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(34, 34, 34, 0.05);
 }
 
-.country-row svg {
-    color: var(--accent);
-}
-
-.country-progress {
-    width: 86px;
+.country-legend-swatch {
+    width: 10px;
     height: 10px;
     border-radius: 999px;
-    overflow: hidden;
-    background: #e8dfd5;
-}
-
-.country-progress-bar {
-    height: 100%;
-    border-radius: inherit;
-    background: color-mix(in srgb, var(--accent) 75%, white);
 }
 
 .portfolio-container {
@@ -929,10 +987,6 @@ button {
         grid-auto-columns: minmax(220px, 75vw);
     }
 
-    .panel-card-wide .country-list {
-        grid-template-columns: 1fr;
-    }
-
     .hero-inner {
         padding: 30px;
     }
@@ -943,6 +997,15 @@ button {
 
     .about-copy .section-title {
         max-width: none;
+    }
+
+    .age-treemap {
+        min-height: 240px;
+        border-radius: 24px;
+    }
+
+    .country-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -992,6 +1055,23 @@ button {
     .metric-card {
         padding-left: 22px;
         padding-right: 22px;
+    }
+
+    .age-tile-content,
+    .age-tile-primary .age-tile-content {
+        padding: 18px;
+    }
+
+    .age-tile-value {
+        font-size: 1.9rem;
+    }
+
+    .age-tile-primary .age-tile-value {
+        font-size: 2.8rem;
+    }
+
+    .country-list {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1239,9 +1319,52 @@ button {
         overflow-wrap: normal !important;
     }
 
-    .panel-card-wide .country-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 3mm 6mm !important;
+    .age-treemap {
+        min-height: 48mm !important;
+        border-radius: 4mm !important;
+    }
+
+    .age-treemap-row {
+        gap: 0 !important;
+    }
+
+    .age-tile {
+        border-radius: 0 !important;
+    }
+
+    .age-tile-content,
+    .age-tile-primary .age-tile-content {
+        padding: 3.2mm !important;
+    }
+
+    .age-tile-label {
+        font-size: 0.64rem !important;
+        letter-spacing: 0.08em !important;
+    }
+
+    .age-tile-value {
+        font-size: 1.12rem !important;
+    }
+
+    .age-tile-primary .age-tile-value {
+        font-size: 1.9rem !important;
+    }
+
+    .age-tile-secondary .age-tile-value {
+        font-size: 0.92rem !important;
+    }
+
+    .country-breakdown {
+        gap: 3mm !important;
+    }
+
+    .country-stack-bar {
+        height: 5mm !important;
+    }
+
+    .country-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 2mm 3mm !important;
     }
 
     .audience-donut-wrap {
@@ -1272,13 +1395,15 @@ button {
         font-size: 0.72rem !important;
     }
 
-    .panel-card-wide .country-progress {
-        width: 34mm !important;
+    .country-legend-item {
+        padding: 2mm 2.5mm !important;
+        border-radius: 4mm !important;
+        gap: 2mm !important;
     }
 
-    .country-row .country-meta:last-child {
-        grid-template-columns: 34mm 10mm !important;
-        width: 44mm !important;
+    .country-legend-label,
+    .country-value {
+        font-size: 0.72rem !important;
     }
 
     .print-page-offers .section-tight {
