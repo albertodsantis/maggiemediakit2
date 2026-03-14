@@ -53,7 +53,7 @@
         heading: "Community Insights",
         updatedLabel: "Actualizado: Marzo 2026",
         keyMetrics: [
-            { icon: "users", tone: "accent", value: "21.6K", label: "Seguidores" },
+            { icon: "users", tone: "accent", value: "21.800", label: "Seguidores" },
             { icon: "trending-up", tone: "berry", value: "78.93%", label: "Engagement Rate" },
             { icon: "globe", tone: "sky", value: "430K", label: "Alcance último mes" },
             { icon: "bar-chart-3", tone: "mint", value: "888K", label: "Reproducciones último mes" }
@@ -127,12 +127,16 @@
     brands: {
         eyebrow: "Marcas que confían en mí",
         items: [
-            "Polar",
+            "Polar Pilsen",
             "Pan de Tata",
-            "Powder Monkey",
-            "Pepsi",
             "7up",
-            "Brezza"
+            "Pepsi",
+            "Cusica",
+            "Tu gruero",
+            "Brezza",
+            "UCAB Shop",
+            "PANA",
+            "Ticketplate"
         ]
     },
     footer: {
