@@ -187,8 +187,12 @@
             return "";
         }
 
+        const smallestPercentage = Math.min(...normalizedItems.map((item) => item.percentage));
+
         const coloredItems = normalizedItems.map((item, index) => ({
             ...item,
+            // Give the smallest segment a slight readability boost without changing the displayed percentage.
+            visualWeight: item.percentage === smallestPercentage ? item.percentage * 1.3 : item.percentage,
             color: palette[index % palette.length]
         }));
 
@@ -197,7 +201,7 @@
                 (result, item) => {
                     const targetRow = result[0].total <= result[1].total ? result[0] : result[1];
                     targetRow.items.push(item);
-                    targetRow.total += item.percentage;
+                    targetRow.total += item.visualWeight;
                     return result;
                 },
                 [
@@ -210,7 +214,7 @@
         const renderTile = (item, extraClass = "") => `
             <article
                 class="age-tile ${extraClass}"
-                style="--tile-color: ${item.color}; flex: ${item.percentage || 1} 1 0;"
+                style="--tile-color: ${item.color}; flex: ${item.visualWeight || 1} 1 0;"
             >
                 <div class="age-tile-content">
                     <div class="age-tile-label">${escapeHtml(item.label)}</div>
