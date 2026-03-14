@@ -611,6 +611,7 @@ button {
 .country-value {
     font-size: 0.96rem;
     font-weight: 800;
+    text-align: right;
 }
 
 .progress {
@@ -636,7 +637,10 @@ button {
 }
 
 .country-row .country-meta:last-child {
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 86px 40px;
+    justify-content: end;
+    justify-items: end;
     width: 150px;
 }
 
@@ -1273,6 +1277,7 @@ button {
     }
 
     .country-row .country-meta:last-child {
+        grid-template-columns: 34mm 10mm !important;
         width: 44mm !important;
     }
 
