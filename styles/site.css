@@ -314,8 +314,9 @@ button {
 }
 
 .about-copy .section-title {
-    max-width: 10ch;
+    max-width: none;
     margin-bottom: 22px;
+    white-space: nowrap;
 }
 
 .chips {
