@@ -1163,6 +1163,15 @@
         background: #ece9d8 !important;
     }
     .xp-window-body .age-tile { border-radius: 0 !important; }
+    .xp-window-body .age-tile-label,
+    .xp-window-body .age-tile-value {
+        font-family: "Trebuchet MS", "Tahoma", sans-serif !important;
+        letter-spacing: 0 !important;
+    }
+    .xp-window-body .age-tile-value {
+        font-weight: 800 !important;
+        color: #0a246a !important;
+    }
     .xp-window-body .portfolio-item {
         border-radius: 0 !important;
         border: 1px solid #808080;
