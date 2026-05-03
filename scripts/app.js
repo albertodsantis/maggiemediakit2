@@ -482,16 +482,20 @@
     /* =========================================================
        WINDOWS REGISTRY
        ========================================================= */
+    // Position windows so the primary (hero) is centered and on top,
+    // with supporting windows fanned around the edges for an inviting "lived-in" desktop.
+    const vw = Math.max(960, window.innerWidth);
+    const vh = Math.max(640, window.innerHeight - 40);
     const W_DEFAULTS = {
-        hero:      { title: "Press Kit.doc — Microsoft Word", icon: "user", body: heroBody, w: 720, h: 600, x: 100, y: 60 },
-        stats:     { title: "Stats.xls — Microsoft Excel", icon: "bar-chart-3", body: statsBody, w: 820, h: 580, x: 140, y: 80 },
-        portfolio: { title: "Portfolio — My Pictures", icon: "image", body: portfolioBody, w: 760, h: 580, x: 180, y: 100 },
-        brands:    { title: "Marcas.txt — Bloc de notas", icon: "award", body: brandsBody, w: 600, h: 420, x: 220, y: 120 },
-        contact:   { title: "Outlook Express — Nuevo mensaje", icon: "mail", body: contactBody, w: 580, h: 420, x: 260, y: 140 },
-        mypc:      { title: "Mi PC", icon: "monitor", body: myComputerBody, w: 720, h: 480, x: 80, y: 50 },
-        display:   { title: "Propiedades de Pantalla", icon: "settings", body: displayBody, w: 480, h: 440, x: 200, y: 80 },
-        recycler:  { title: "Papelera de reciclaje", icon: "trash-2", body: recyclerBody, w: 460, h: 320, x: 240, y: 120 },
-        about:     { title: `Acerca de ${data.hero.firstName}`, icon: "info", body: aboutMaggieBody, w: 440, h: 380, x: 220, y: 100 }
+        hero:      { title: "Press Kit.doc — Microsoft Word",        icon: "user",        body: heroBody,         w: 700, h: 580, x: Math.round(vw / 2 - 350),       y: Math.round(vh / 2 - 290) },
+        stats:     { title: "Stats.xls — Microsoft Excel",            icon: "bar-chart-3", body: statsBody,        w: 720, h: 500, x: Math.max(20, vw - 760),         y: 40 },
+        portfolio: { title: "Portfolio — My Pictures",                icon: "image",       body: portfolioBody,    w: 640, h: 460, x: 30,                              y: Math.max(40, vh - 500) },
+        brands:    { title: "Marcas.txt — Bloc de notas",             icon: "award",       body: brandsBody,       w: 480, h: 360, x: Math.max(20, vw - 520),         y: Math.max(40, vh - 400) },
+        contact:   { title: "Outlook Express — Nuevo mensaje",        icon: "mail",        body: contactBody,      w: 540, h: 380, x: 60,                              y: 40 },
+        mypc:      { title: "Mi PC",                                  icon: "monitor",     body: myComputerBody,   w: 700, h: 460, x: 100,                             y: 80 },
+        display:   { title: "Propiedades de Pantalla",                icon: "settings",    body: displayBody,      w: 460, h: 420, x: Math.round(vw / 2 - 230),       y: 80 },
+        recycler:  { title: "Papelera de reciclaje",                  icon: "trash-2",     body: recyclerBody,     w: 440, h: 300, x: 240,                             y: 200 },
+        about:     { title: `Acerca de ${data.hero.firstName}`,       icon: "info",        body: aboutMaggieBody,  w: 420, h: 360, x: Math.round(vw / 2 - 210),       y: 160 }
     };
 
     const xpWindowHTML = (id, def) => `
@@ -1274,13 +1278,16 @@
         });
     });
 
-    // On desktop, auto-open the hero window after welcome
+    // On desktop, auto-open all main windows in cascade after welcome,
+    // ending with hero focused on top so the user lands on the press kit.
     if (!isMobile) {
-        // Wait for welcome screen to be dismissed
         const watcher = setInterval(() => {
             if (boot.classList.contains("xp-boot-done")) {
                 clearInterval(watcher);
-                setTimeout(() => openWindow("hero"), 500);
+                const cascade = ["portfolio", "stats", "brands", "contact", "hero"];
+                cascade.forEach((id, i) => {
+                    setTimeout(() => openWindow(id), 350 + i * 220);
+                });
             }
         }, 200);
     }
