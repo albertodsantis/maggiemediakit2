@@ -498,8 +498,9 @@
         about:     { title: `Acerca de ${data.hero.firstName}`,       icon: "info",        body: aboutMaggieBody,  w: 420, h: 360, x: Math.round(vw / 2 - 210),       y: 160 }
     };
 
+    const PRINT_INCLUDE = new Set(["hero", "stats", "portfolio", "brands", "contact"]);
     const xpWindowHTML = (id, def) => `
-        <section class="xp-window" data-window="${id}" style="left:${def.x}px; top:${def.y}px; width:${def.w}px; height:${def.h}px; display:none;">
+        <section class="xp-window ${PRINT_INCLUDE.has(id) ? "xp-print-include" : ""}" data-window="${id}" style="left:${def.x}px; top:${def.y}px; width:${def.w}px; height:${def.h}px; display:none;">
             <div class="xp-titlebar">
                 <span class="xp-titlebar-icon"><i data-lucide="${def.icon}"></i></span>
                 <span class="xp-titlebar-text">${def.title}</span>

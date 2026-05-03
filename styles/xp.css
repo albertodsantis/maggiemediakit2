@@ -1323,26 +1323,73 @@
 
 /* ============ PRINT ============ */
 @media print {
-    .xp-boot, .xp-taskbar, .xp-titlebar, .xp-statusbar, .xp-desktop,
-    .xp-start-menu, .xp-context-menu, .xp-balloon, .xp-bsod,
+    /* Hide every piece of XP chrome and any window that isn't part of the press kit */
+    .xp-boot, .xp-taskbar, .xp-titlebar, .xp-statusbar, .xp-desktop::before,
+    .xp-desktop::after, .xp-start-menu, .xp-context-menu, .xp-balloon, .xp-bsod,
     .xp-screensaver, .xp-dialog-backdrop, .xp-resize-handle, .xp-icon-grid,
-    .xp-explorer-sidebar { display: none !important; }
-    body { overflow: visible !important; padding-bottom: 0 !important; }
-    .xp-window {
+    .xp-explorer-sidebar, .xp-window:not(.xp-print-include) { display: none !important; }
+
+    html, body {
+        overflow: visible !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: var(--page-bg, #fdfbf7) !important;
+        height: auto !important;
+    }
+
+    /* Desktop becomes a plain stacking container so cascade order is preserved */
+    .xp-desktop {
         position: static !important;
+        display: flex !important;
+        flex-direction: column;
+        background: none !important;
+        inset: auto !important;
+        overflow: visible !important;
+    }
+
+    /* Force a deterministic top-to-bottom order regardless of cascade z-index */
+    .xp-window[data-window="hero"]      { order: 1; }
+    .xp-window[data-window="stats"]     { order: 2; }
+    .xp-window[data-window="portfolio"] { order: 3; }
+    .xp-window[data-window="brands"]    { order: 4; }
+    .xp-window[data-window="contact"]   { order: 5; }
+
+    .xp-window.xp-print-include {
+        position: static !important;
+        display: block !important;
         background: transparent !important;
         box-shadow: none !important;
+        border-radius: 0 !important;
         margin: 0 !important;
         padding: 0 !important;
+        width: 100% !important;
+        height: auto !important;
         max-width: none !important;
         max-height: none !important;
+        min-height: 0 !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        page-break-after: always;
+        break-after: page;
     }
+    .xp-window.xp-print-include:last-of-type {
+        page-break-after: auto;
+        break-after: auto;
+    }
+
     .xp-window-body {
         background: transparent !important;
         border: none !important;
         padding: 0 !important;
         overflow: visible !important;
+        height: auto !important;
+        max-height: none !important;
     }
-    .xp-explorer-layout { grid-template-columns: 1fr !important; }
+
+    /* Explorer layout (only used for Mi PC, which isn't printed — but be safe) */
+    .xp-explorer-layout { grid-template-columns: 1fr !important; height: auto !important; margin: 0 !important; }
     .xp-explorer-content { padding: 0 !important; }
+
+    /* Mobile-shell duplicates — never print these, the desktop windows already carry the content */
+    #xpMobileShell { display: none !important; }
 }
